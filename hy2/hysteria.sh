@@ -522,12 +522,12 @@ showconf(){
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                  ${BLUE}一键安装hysteria协议 ${PLAIN}                   #"
-    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 )${PLAIN}                                 #"
+    echo -e "#                  ${BLUE}一键安装hysteria ${PLAIN}协议                    #"
+    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 )                                 #"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2${PLAIN}"
+    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2"
     echo " -------------"
     echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria2 配置"
