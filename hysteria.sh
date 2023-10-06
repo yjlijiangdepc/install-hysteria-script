@@ -315,7 +315,7 @@ dns:
     - 1.1.1.1
     - 114.114.114.114
 proxies:
-  - name: yjlijiangdepc-Hysteria1
+  - name: Misaka-Hysteria1
     type: hysteria
     server: $hy_domain
     port: $last_port
@@ -331,14 +331,14 @@ proxy-groups:
   - name: Proxy
     type: select
     proxies:
-      - yjlijiangdepc-Hysteria1
+      - Misaka-Hysteria1
       
 rules:
   - GEOIP,CN,DIRECT
   - MATCH,Proxy
 EOF
 
-    url="hysteria://$hy_domain:$last_port?protocol=$protocol&auth=$auth_pwd&peer=$domain&insecure=$true&upmbps=20&downmbps=100&alpn=h3#yjlijiangdepc-Hysteria1"
+    url="hysteria://$hy_domain:$last_port?protocol=$protocol&auth=$auth_pwd&peer=$domain&insecure=$true&upmbps=20&downmbps=100&alpn=h3#Misaka-Hysteria1"
     echo $url > /root/hy/url.txt
 
     systemctl daemon-reload
@@ -481,7 +481,7 @@ EOF
 }
 EOF
 
-    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#yjlijiangdepc-Hysteria2"
+    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Misaka-Hysteria2"
     echo $url > /root/hy/url.txt
 
     systemctl daemon-reload
