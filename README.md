@@ -15,3 +15,4 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/yjlijiangdepc/i
 ```shell
 wget -N --no-check-certificate https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/hy1/hysteria.sh && bash hysteria.sh
 ```
+Thank you to the original author: （Misaka-blog） for providing the script
