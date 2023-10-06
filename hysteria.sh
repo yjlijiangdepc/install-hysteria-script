@@ -471,7 +471,6 @@ EOF
     "maxConnReceiveWindow": 33554432
   },
   "socks5": {
-    "fastOpen": true
     "listen": "127.0.0.1:2689"
   },
   "transport": {
