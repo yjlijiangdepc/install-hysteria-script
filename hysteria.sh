@@ -471,6 +471,7 @@ EOF
     "maxConnReceiveWindow": 33554432
   },
   "socks5": {
+    "fastOpen": true,
     "listen": "127.0.0.1:2689"
   },
   "transport": {
@@ -772,15 +773,15 @@ showconf(){
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                  ${BLUE}一键安装hysteria协议 ${PLAIN}                   #"
-    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 )${PLAIN}                                 #"
+    echo -e "#                  ${BLUE}一键安装hysteria ${PLAIN}协议                    #"
+    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 )                                 #"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria1"
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 1${PLAIN}"
+    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 1"
     echo " -------------"
     echo -e " ${GREEN}3.${PLAIN} 安装 Hysteria2"
-    echo -e " ${GREEN}4.${PLAIN} ${RED}卸载 Hysteria 2${PLAIN}"
+    echo -e " ${GREEN}4.${PLAIN} ${RED}卸载 Hysteria 2"
     echo " -------------"
     echo -e " ${GREEN}5.${PLAIN} 关闭、开启、重启 Hysteria"
     echo -e " ${GREEN}6.${PLAIN} 修改 Hysteria 配置"
