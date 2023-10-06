@@ -222,7 +222,7 @@ insthysteria(){
     fi
     ${PACKAGE_INSTALL} curl wget sudo qrencode procps iptables-persistent netfilter-persistent
 
-    wget -N https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria/main/hy2/hysteria_install_server.sh
+    wget -N https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/hy2/hysteria_install_server.sh
     bash hysteria_install_server.sh
     rm -f hysteria_install_server.sh
 
