@@ -15,4 +15,12 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/yjlijiangdepc/i
 ```shell
 wget -N --no-check-certificate https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/hy1/hysteria.sh && bash hysteria.sh
 ```
-Thank you to the original author: （Misaka-blog） for providing the script
+
+### Apply for Acme certificate
+
+
+```shell
+wget -N --no-check-certificate https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/acme.sh && bash acme.sh
+```
+
+Note: (Misaka-blog) Thanks to the original author for the script
