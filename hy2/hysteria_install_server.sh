@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# hysteria_install_server.sh - hysteria server install script
-# Try `hysteria_install_server.sh --help` for usage.
+# install_server.sh - hysteria server install script
+# Try `install_server.sh --help` for usage.
 #
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2023 Aperture Internet Laboratory
@@ -31,7 +31,9 @@ CONFIG_DIR="/etc/hysteria"
 
 # URLs of GitHub
 REPO_URL="https://github.com/apernet/hysteria"
-API_BASE_URL="https://api.github.com/repos/apernet/hysteria"
+
+# URL of Hysteria 2 API
+HY2_API_BASE_URL="https://api.hy2.io/v1"
 
 # curl command line flags.
 # To using a proxy, please specify ALL_PROXY in the environ variable, such like:
@@ -294,7 +296,7 @@ rerun_with_sudo() {
 
   local _target_script
 
-  if has_prefix "$0" "/dev/fd/"; then
+  if has_prefix "$0" "/dev/" || has_prefix "$0" "/proc/"; then
     local _tmp_script="$(mktemp)"
     chmod +x "$_tmp_script"
 
@@ -675,7 +677,7 @@ After=network.target
 [Service]
 Type=simple
 ExecStart=$EXECUTABLE_INSTALL_PATH server --config ${CONFIG_DIR}/${_config_name}.yaml
-WorkingDirectory=$HYSTERIA_HOME_DIR
+WorkingDirectory=~
 User=$HYSTERIA_USER
 Group=$HYSTERIA_USER
 Environment=HYSTERIA_LOG_LEVEL=info
@@ -802,13 +804,13 @@ get_latest_version() {
   fi
 
   local _tmpfile=$(mktemp)
-  if ! curl -sS -H 'Accept: application/vnd.github.v3+json' "$API_BASE_URL/releases/latest" -o "$_tmpfile"; then
-    error "Failed to get the latest version from GitHub API, please check your network and try again."
+  if ! curl -sS "$HY2_API_BASE_URL/update?cver=installscript&plat=${OPERATING_SYSTEM}&arch=${ARCHITECTURE}&chan=release&side=server" -o "$_tmpfile"; then
+    error "Failed to get the latest version from Hysteria 2 API, please check your network and try again."
     exit 11
   fi
 
-  local _latest_version=$(grep 'tag_name' "$_tmpfile" | head -1 | grep -o '"app/v.*"')
-  _latest_version=${_latest_version#'"app/'}
+  local _latest_version=$(grep 'lver' "$_tmpfile" | head -1 | grep -o '"v.*"')
+  _latest_version=${_latest_version#'"'}
   _latest_version=${_latest_version%'"'}
 
   if [[ -n "$_latest_version" ]]; then
