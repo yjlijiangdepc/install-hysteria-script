@@ -71,7 +71,7 @@ inst_cert(){
             green "检测到原有域名：$domain 的证书，正在应用"
             hy_domain=$domain
         else
-            wget -N https://gitlab.com/Misaka-blog/acme-script/-/raw/main/acme.sh && bash acme.sh
+            wget -N https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/acme.sh && bash acme.sh
             
             if [[ -f /root/cert.crt && -f /root/private.key ]] && [[ -s /root/cert.crt && -s /root/private.key ]] && [[ -f /root/ca.log ]]; then
                 domain=$(cat /root/ca.log)
