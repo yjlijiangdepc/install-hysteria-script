@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# install_server.sh - hysteria server install script
-# Try `install_server.sh --help` for usage.
+# hysteria_install_server.sh - hysteria server install script
+# Try `hysteria_install_server.sh --help` for usage.
 #
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2023 Aperture Internet Laboratory
