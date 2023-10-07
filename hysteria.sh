@@ -773,8 +773,8 @@ showconf(){
 menu() {
     clear
     echo "#############################################################"
-    echo -e "#                  ${BLUE} 一键安装hysteria ${PLAIN} 协议 ${PLAIN}                 #"
-    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 ) ${PLAIN}                                #"
+    echo -e "# ${BLUE}                  一键安装hysteria ${YELLOW}协议 ${PLAIN}                 #"
+    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 ) ${PLAIN}#"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria1"
