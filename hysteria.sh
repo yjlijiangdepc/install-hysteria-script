@@ -71,7 +71,7 @@ inst_cert(){
             green "检测到原有域名：$domain 的证书，正在应用"
             hy_domain=$domain
         else
-            wget -N https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/acme.sh && bash acme.sh
+            wget -N https://gitlab.com/Misaka-blog/acme-script/-/raw/main/acme.sh && bash acme.sh
             
             if [[ -f /root/cert.crt && -f /root/private.key ]] && [[ -s /root/cert.crt && -s /root/private.key ]] && [[ -f /root/ca.log ]]; then
                 domain=$(cat /root/ca.log)
@@ -512,6 +512,11 @@ starthysteria(){
     systemctl enable hysteria-server >/dev/null 2>&1
 }
 
+statushysteria(){
+    systemctl status hysteria-server
+    systemctl enable hysteria-server >/dev/null 2>&1
+}
+
 stophysteria(){
     systemctl stop hysteria-server
     systemctl disable hysteria-server >/dev/null 2>&1
@@ -523,12 +528,14 @@ hy_switch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria 2"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria 2"
+	echo -e " ${GREEN}3.${PLAIN} 查看服务器状态"
     echo ""
     read -rp "请输入选项 [0-3]: " switchInput
     case $switchInput in
         1 ) starthysteria ;;
         2 ) stophysteria ;;
         3 ) stophysteria && starthysteria ;;
+	    4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -773,31 +780,26 @@ showconf(){
 menu() {
     clear
     echo "#############################################################"
-    echo -e "# ${BLUE}                  一键安装hysteria ${YELLOW}协议 ${PLAIN}                 #"
-    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 ) ${PLAIN}#"
+    echo -e "# ${GREEN}                  一键安装hysteria ${YELLOW}协议 ${PLAIN}                 #"
+    echo -e "# ${GREEN}作者修改: ${PLAIN}YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 ) ${PLAIN}#"
     echo "#############################################################"
     echo ""
-    echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria1"
-    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 1"
+    echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
+    echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2"
     echo " -------------"
-    echo -e " ${GREEN}3.${PLAIN} 安装 Hysteria2"
-    echo -e " ${GREEN}4.${PLAIN} ${RED}卸载 Hysteria 2"
+    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2、查看服务器状态"
+    echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria2 配置"
+    echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria2 配置文件"
     echo " -------------"
-    echo -e " ${GREEN}5.${PLAIN} 关闭、开启、重启 Hysteria"
-    echo -e " ${GREEN}6.${PLAIN} 修改 Hysteria 配置"
-    echo -e " ${GREEN}7.${PLAIN} 显示 Hysteria 配置文件"
-    echo " -------------"
-    echo -e " ${GREEN}0.${PLAIN} 退出脚本"
+    echo -e " ${RED}0.${PLAIN} 退出脚本"
     echo ""
-    read -rp "请输入选项 [0-7]: " menuInput
+    read -rp "请输入选项 [0-5]: " menuInput
     case $menuInput in
-        1 ) inst_hyv1 ;;
-        2 ) unst_hyv1 ;;
-        3 ) inst_hyv2 ;;
-        4 ) unst_hyv2 ;;
-        5 ) hy_switch ;;
-        6 ) changeconf ;;
-        7 ) showconf ;;
+        1 ) insthysteria ;;
+        2 ) unsthysteria ;;
+        3 ) hysteriaswitch ;;
+        4 ) changeconf ;;
+        5 ) showconf ;;
         * ) exit 1 ;;
     esac
 }
