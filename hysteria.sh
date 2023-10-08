@@ -536,7 +536,7 @@ hy_switch(){
         1 ) starthysteria ;;
         2 ) stophysteria ;;
         3 ) stophysteria && starthysteria ;;
-		4 ) statushysteria ;;
+	4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
