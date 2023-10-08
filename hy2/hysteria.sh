@@ -366,7 +366,6 @@ EOF
     systemctl daemon-reload
     systemctl enable hysteria-server
     systemctl start hysteria-server
-    systemctl status hysteria-server
     if [[ -n $(systemctl status hysteria-server 2>/dev/null | grep -w active) && -f '/etc/hysteria/config.yaml' ]]; then
         green "Hysteria 2 服务启动成功"
     else
@@ -399,11 +398,6 @@ starthysteria(){
     systemctl enable hysteria-server >/dev/null 2>&1
 }
 
-statushysteria(){
-    systemctl status hysteria-server
-    systemctl enable hysteria-server >/dev/null 2>&1
-}
-
 stophysteria(){
     systemctl stop hysteria-server
     systemctl disable hysteria-server >/dev/null 2>&1
@@ -415,14 +409,12 @@ hy_switch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria 2"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria 2"
-    echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
     echo ""
-    read -rp "请输入选项 [0-4]: " switchInput
+    read -rp "请输入选项 [1-3]: " switchInput
     case $switchInput in
         1 ) starthysteria ;;
         2 ) stophysteria ;;
         3 ) stophysteria && starthysteria ;;
-	4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -537,13 +529,13 @@ menu() {
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2"
     echo " -------------"
-    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2、查看服务器状态"
+    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria2 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria2 配置文件"
     echo " -------------"
     echo -e " ${RED}0.${PLAIN} 退出脚本"
     echo ""
-    read -rp "请输入选项 [0-5]: " menuInput
+    read -rp "请输入选项 [1-5]: " menuInput
     case $menuInput in
         1 ) insthysteria ;;
         2 ) unsthysteria ;;
