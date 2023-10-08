@@ -529,7 +529,7 @@ hy_switch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria 2"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria 2"
-    echo -e " ${GREEN}3.${PLAIN} 查看服务器状态"	
+    echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"	
     echo ""
     read -rp "请输入选项 [1-4]: " switchInput
     case $switchInput in
