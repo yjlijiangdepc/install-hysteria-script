@@ -488,7 +488,6 @@ EOF
     systemctl daemon-reload
     systemctl enable hysteria-server
     systemctl start hysteria-server
-	systemctl status hysteria-server
     if [[ -n $(systemctl status hysteria-server 2>/dev/null | grep -w active) && -f '/etc/hysteria/config.yaml' ]]; then
         green "Hysteria 2 服务启动成功"
     else
