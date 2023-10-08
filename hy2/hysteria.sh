@@ -398,23 +398,30 @@ starthysteria(){
     systemctl enable hysteria-server >/dev/null 2>&1
 }
 
+statushysteria(){
+    systemctl status hysteria-server
+    systemctl enable hysteria-server >/dev/null 2>&1
+}
+
 stophysteria(){
     systemctl stop hysteria-server
     systemctl disable hysteria-server >/dev/null 2>&1
 }
 
-hysteriaswitch(){
+hy_switch(){
     yellow "请选择你需要的操作："
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria 2"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria 2"
+	echo -e " ${GREEN}3.${PLAIN} 查看服务器状态"
     echo ""
     read -rp "请输入选项 [0-3]: " switchInput
     case $switchInput in
         1 ) starthysteria ;;
         2 ) stophysteria ;;
         3 ) stophysteria && starthysteria ;;
+	    4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -523,17 +530,17 @@ menu() {
     clear
     echo "#############################################################"
     echo -e "# ${GREEN}                  一键安装hysteria ${YELLOW}协议 ${PLAIN}                 #"
-    echo -e "# ${GREEN}作者修改${PLAIN}: YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 ) ${PLAIN}#"
+    echo -e "# ${GREEN}作者修改: ${PLAIN}YJLIJIANGDEPC  ${RED}(原脚本引用： MisakaNo の 小破站 ) ${PLAIN}#"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2"
     echo " -------------"
-    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2"
+    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2、查看服务器状态"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria2 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria2 配置文件"
     echo " -------------"
-    echo -e " ${GREEN}0.${PLAIN} 退出脚本"
+    echo -e " ${RED}0.${PLAIN} 退出脚本"
     echo ""
     read -rp "请输入选项 [0-5]: " menuInput
     case $menuInput in
