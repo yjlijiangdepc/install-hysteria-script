@@ -361,6 +361,7 @@ EOF
     systemctl daemon-reload
     systemctl enable hysteria-server
     systemctl start hysteria-server
+	systemctl status hysteria-server
 
     if [[ -n $(systemctl status hysteria-server 2>/dev/null | grep -w active) && -f '/etc/hysteria/config.json' ]]; then
         green "Hysteria 服务启动成功"
@@ -396,6 +397,10 @@ stophy(){
     systemctl disable hysteria-server >/dev/null 2>&1
 }
 
+statushysteria() {
+    systemctl status hysteria-server
+    systemctl enable hysteria-server >/dev/null 2>&1
+}
 
 hyswitch(){
     yellow "请选择你需要的操作："
@@ -403,12 +408,14 @@ hyswitch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria"
+	echo -e " ${GREEN}3.${PLAIN} 查看服务器状态"
     echo ""
-    read -rp "请输入选项 [1-3]: " switchInput
+    read -rp "请输入选项 [1-4]: " switchInput
     case $switchInput in
         1 ) starthy ;;
         2 ) stophy ;;
         3 ) stophy && starthy ;;
+		4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -530,7 +537,7 @@ menu() {
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria"
     echo " -------------"
-    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria"
+    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria、查看服务器状态"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria 配置文件"
     echo " -------------"
