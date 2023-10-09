@@ -122,6 +122,10 @@ inst_cert(){
     fi
 }
 
+Certificate(){
+	sudo chmod +r /root/private.key
+}
+
 inst_pro(){
     green "Hysteria 节点协议如下："
     echo ""
@@ -488,6 +492,7 @@ EOF
     systemctl daemon-reload
     systemctl enable hysteria-server
     systemctl start hysteria-server
+	systemctl status hysteria-server
     if [[ -n $(systemctl status hysteria-server 2>/dev/null | grep -w active) && -f '/etc/hysteria/config.yaml' ]]; then
         green "Hysteria 2 服务启动成功"
     else
@@ -535,7 +540,7 @@ hy_switch(){
         1 ) starthysteria ;;
         2 ) stophysteria ;;
         3 ) stophysteria && starthysteria ;;
-	4 ) statushysteria ;;
+		4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -793,10 +798,11 @@ menu() {
     echo -e " ${GREEN}5.${PLAIN} 关闭、开启、重启 Hysteria、查看服务器状态"
     echo -e " ${GREEN}6.${PLAIN} 修改 Hysteria 配置"
     echo -e " ${GREEN}7.${PLAIN} 显示 Hysteria 配置文件"
+	echo -e " ${GREEN}8.${PLAIN} 授权Acme 证书"
     echo " -------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
-    read -rp "请输入选项 [1-7]: " menuInput
+    read -rp "请输入选项 [1-8]: " menuInput
     case $menuInput in
         1 ) inst_hyv1 ;;
         2 ) unst_hyv1 ;;
@@ -805,6 +811,7 @@ menu() {
         5 ) hy_switch ;;
         6 ) changeconf ;;
         7 ) showconf ;;
+	6 ) Certificate ;;
         * ) exit 1 ;;
     esac
 }
