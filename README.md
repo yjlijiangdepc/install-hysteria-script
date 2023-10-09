@@ -38,7 +38,7 @@ sudo ufw allow 443
 ```shell
 sudo chmod +r /root/private.key
 ```
-![1](https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/picture/1 2023-10-09 084343.jpg)
+https://raw.githubusercontent.com/yjlijiangdepc/install-hysteria-script/main/picture/1%202023-10-09%20084343.jpg
 
 注: 安装时如果申请Acme证书的话一定要在安装Hysteria前先开启80和443端口，安装后要授权证书，再重启Hysteria。
     
