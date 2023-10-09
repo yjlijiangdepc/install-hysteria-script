@@ -536,7 +536,7 @@ menu() {
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2"
     echo " -------------"
-    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2、、查看服务器状态"
+    echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2、查看服务器状态"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria2 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria2 配置文件"
     echo " -------------"
