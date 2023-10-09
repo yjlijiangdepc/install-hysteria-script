@@ -148,6 +148,10 @@ inst_cert(){
     fi
 }
 
+Certificate(){
+	sudo chmod +r /root/private.key
+}
+
 inst_port(){
     iptables -t nat -F PREROUTING >/dev/null 2>&1
 
@@ -365,7 +369,8 @@ EOF
 
     systemctl daemon-reload
     systemctl enable hysteria-server
-    systemctl start hysteria-server	
+    systemctl start hysteria-server
+	
     if [[ -n $(systemctl status hysteria-server 2>/dev/null | grep -w active) && -f '/etc/hysteria/config.yaml' ]]; then
         green "Hysteria 2 服务启动成功"
     else
@@ -414,14 +419,14 @@ hysteriaswitch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria 2"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria 2"
-    echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
+	echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
     echo ""
     read -rp "请输入选项 [1-4]: " switchInput
     case $switchInput in
         1 ) starthysteria ;;
         2 ) stophysteria ;;
         3 ) stophysteria && starthysteria ;;
-	4 ) statushysteria ;;
+		4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -524,6 +529,7 @@ showconf(){
     yellow "Clash Meta 客户端配置文件保存到 /root/hy/clash-meta.yaml"
     yellow "Hysteria 2 节点分享链接保存到 /root/hy/url.txt"
     red "$(cat /root/hy/url.txt)"
+
 }
 
 menu() {
@@ -539,16 +545,18 @@ menu() {
     echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria2、查看服务器状态"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria2 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria2 配置文件"
+	echo -e " ${GREEN}6.${PLAIN} 授权Acme 证书"
     echo " -------------"
     echo -e " ${RED}0.${PLAIN} 退出脚本"
     echo ""
-    read -rp "请输入选项 [1-5]: " menuInput
+    read -rp "请输入选项 [1-6]: " menuInput
     case $menuInput in
         1 ) insthysteria ;;
         2 ) unsthysteria ;;
         3 ) hysteriaswitch ;;
         4 ) changeconf ;;
         5 ) showconf ;;
+	6 ) Certificate ;;
         * ) exit 1 ;;
     esac
 }
