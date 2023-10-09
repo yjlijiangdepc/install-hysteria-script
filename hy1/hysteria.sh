@@ -136,6 +136,10 @@ inst_cert(){
     fi
 }
 
+Certificate(){
+	sudo chmod +r /root/private.key
+}
+
 inst_pro(){
     green "Hysteria 节点协议如下："
     echo ""
@@ -361,6 +365,8 @@ EOF
     systemctl daemon-reload
     systemctl enable hysteria-server
     systemctl start hysteria-server
+	systemctl status hysteria-server
+
     if [[ -n $(systemctl status hysteria-server 2>/dev/null | grep -w active) && -f '/etc/hysteria/config.json' ]]; then
         green "Hysteria 服务启动成功"
     else
@@ -406,14 +412,14 @@ hyswitch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria"
-    echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
+	echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
     echo ""
     read -rp "请输入选项 [1-4]: " switchInput
     case $switchInput in
         1 ) starthy ;;
         2 ) stophy ;;
         3 ) stophy && starthy ;;
-	4 ) statushysteria ;;
+		4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
@@ -538,16 +544,18 @@ menu() {
     echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria、查看服务器状态"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria 配置文件"
+	echo -e " ${GREEN}6.${PLAIN} 授权Acme 证书"
     echo " -------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
-    read -rp "请输入选项 [1-5]: " menuInput
+    read -rp "请输入选项 [1-6]: " menuInput
     case $menuInput in
         1 ) inst_hy ;;
         2 ) uninst_hy ;;
         3 ) hyswitch ;;
         4 ) editconf ;;
         5 ) showconf ;;
+	6 ) Certificate ;;
         * ) exit 1 ;;
     esac
 }
