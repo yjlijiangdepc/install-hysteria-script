@@ -412,7 +412,7 @@ hyswitch(){
     echo -e " ${GREEN}1.${PLAIN} 启动 Hysteria"
     echo -e " ${GREEN}2.${PLAIN} 关闭 Hysteria"
     echo -e " ${GREEN}3.${PLAIN} 重启 Hysteria"
-	echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
+    echo -e " ${GREEN}4.${PLAIN} 查看服务器状态"
     echo ""
     read -rp "请输入选项 [1-4]: " switchInput
     case $switchInput in
@@ -544,7 +544,7 @@ menu() {
     echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria、查看服务器状态"
     echo -e " ${GREEN}4.${PLAIN} 修改 Hysteria 配置"
     echo -e " ${GREEN}5.${PLAIN} 显示 Hysteria 配置文件"
-	echo -e " ${GREEN}6.${PLAIN} 授权Acme 证书"
+    echo -e " ${GREEN}6.${PLAIN} 授权Acme 证书"
     echo " -------------"
     echo -e " ${GREEN}0.${PLAIN} 退出脚本"
     echo ""
