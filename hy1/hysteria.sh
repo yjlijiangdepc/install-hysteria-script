@@ -419,7 +419,7 @@ hyswitch(){
         1 ) starthy ;;
         2 ) stophy ;;
         3 ) stophy && starthy ;;
-		4 ) statushysteria ;;
+	4 ) statushysteria ;;
         * ) exit 1 ;;
     esac
 }
